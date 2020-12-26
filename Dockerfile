@@ -1,6 +1,7 @@
 FROM node:14.15.3-alpine
 
 ENV APP_ROOT /web
+RUN mkdir -p ${APP_ROOT}
 WORKDIR ${APP_ROOT}
 ADD . ${APP_ROOT}
 RUN npm ci
