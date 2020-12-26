@@ -1,10 +1,12 @@
-FROM node:14.15.3-alpine
+FROM node:12-alpine
 
-ENV APP_ROOT /web
-RUN mkdir -p ${APP_ROOT}
-WORKDIR ${APP_ROOT}
-ADD . ${APP_ROOT}
-RUN npm ci
+RUN mkdir -p /usr/src/app
+
+WORKDIR /usr/src/app
+
+COPY package.json ./
+RUN npm install
+COPY .  /usr/src/app
 RUN npm run build
 
 # expose 3000 on container
